@@ -1,0 +1,78 @@
+.nav {
+    position: relative;
+}
+
+.layer {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
+}
+
+.overall-nav {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+
+}
+
+.icon {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+}
+
+.iconItem {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.title {
+    width: 80%;
+}
+
+.screen {
+    height: 100vh;
+    background-color: #7FF2CC;
+    transform: translate(-100vw);
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+}
+
+.open-screen {
+    height: 100vh;
+    color: white;
+    background: linear-gradient(to right, #3a7bd5, #3a6073); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    transform: translate(-50px);
+    transition: all 0.5s;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    /* bottom: 0; */
+    right: 0;
+}
+.sideBar-content {
+    padding-left: 70px;
+    padding-top: 20px;
+}
+.icon-right{
+    margin-right: 10px;
+}
+.item{
+    margin-top: 10px;
+    /* background-color: red; */
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+.mt-3{
+    margin-right: 20px;
+}
+.item:hover{
+    background-color: #89c2f8d5;
+    transition: all ease-out 0.5s;
+}
