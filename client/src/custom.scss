@@ -13,21 +13,32 @@ $info: #5DADE2;
     background: linear-gradient(to right, #3a7bd5, #3a6073); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
-
+.vw-90{
+    width: 90vw;
+}
 .cursor-pointer {
     cursor: pointer;
 }
-
+.vw-80{
+    width: 80vw;
+}
 .vw-95 {
     width: 95vw
 }
-
 .vh-10 {
     height: 10vh;
 }
-
+.vh-85{
+    height: 85vh;
+}
 .pt-10vh {
     padding-top: 10vh;
+}
+.w-60{
+    width: 60%;
+}
+.w-40{
+    width: 40%;
 }
 .pointer{
     cursor: pointer;

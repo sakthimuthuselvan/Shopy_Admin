@@ -42,7 +42,7 @@ function Index() {
       {isClicked ? <div className='layer'></div> : null}
       <div className={isClicked ? "open-screen" : 'screen'}>
       <div className='sideBar-content'>
-       <CloseIcon className='iconItem' onClick={()=> closeBtnClick()}/>
+       <IconButton onClick={()=> closeBtnClick()}><CloseIcon className='iconItem text-white' /></IconButton>
 
        <div className='mt-3'>
           {SideBarList.map((item)=>{

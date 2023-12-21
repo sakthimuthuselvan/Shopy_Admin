@@ -13,13 +13,13 @@ function App() {
   return (
     <div>
       <div>
-        {size === "sm" || size === "md" ? <NavBar /> :  <SideBar /> }  
-        {/* <BrowserRouter>
+        {/* {size === "sm" || size === "md" ? <NavBar /> :  <SideBar /> }   */}
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<SingIn />} />
             <Route path="/signUp" element={<SignUp />} />
           </Routes>
-        </BrowserRouter> */}
+        </BrowserRouter>
 
       </div>
     </div>

@@ -35,9 +35,9 @@
 
 .screen {
     height: 100vh;
-    background-color: #7FF2CC;
+    background: linear-gradient(to right, #3a7bd5, #3a6073);
     transform: translate(-100vw);
-    opacity: 0;
+    opacity: 100%;
     transition: all 0.5s;
     position: absolute;
     z-index: 100;
