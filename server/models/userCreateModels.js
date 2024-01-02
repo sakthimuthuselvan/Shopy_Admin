@@ -23,13 +23,11 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  lastLogin: {
+    type: String,
   }
 });
-
-
-
-
-
 
 const UserSchema = mongoose.model('users', userSchema);
 

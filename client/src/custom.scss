@@ -1,16 +1,16 @@
-$primary : #3A78CA;
-$secondary: green;
+$primary : #2A2559;
+$secondary: #F10895;
 $dark :#DE3163;
 $success: #06CB4E;
 $danger: #F44B62;
 $warning: #FFBF00;
-$info: #5DADE2;
+$info: #2054F7;
 
 .btn-primary {
     background: #3A78CA;
 }
 .primary-bg{
-    background: linear-gradient(to right, #3a7bd5, #3a6073); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 .vw-90{
@@ -45,14 +45,50 @@ $info: #5DADE2;
 }
 .jr-card{
     min-height: 80px;
-    // width: 100%;
     border-radius: 15px;
-    box-shadow: 0px 2px 10px 0px rgba(128, 128, 128, 0.719);
+    box-shadow: 2px 2px 5px 3px rgb(128 128 128 / 30%);
     padding: 20px;
     margin: 15px 0;
    
 }
 
+
+
+// Light Theme 
+.bg-light{
+    background-color: white;
+}
+.bg-dark{
+    background-color: black !important;
+}
+.light-primary{
+    color: #050B6B;
+}
+.bg-light-primary{
+    background-color: #050B6B;
+}
+.light-secondary{
+    color: #F10895;
+}
+.bg-light-secondary{
+    background-color: #F10895;
+}
+
+
+// Dark Theme
+
+.dark-primary{
+    color: #2D91F6;
+}
+.bg-light-primary{
+    background-color: #2D91F6;
+}
+.dark-secondary{
+    color: #1F262E;
+}
+.bg-dark-secondary{
+    background-color: #1F262E;
+}
+
 //this is for customize boosttrab class name
-// @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";

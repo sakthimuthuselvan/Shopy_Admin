@@ -1,26 +1,17 @@
-import { Button, IconButton, Input, InputLabel, TextField, } from '@mui/material';
-import React, { Suspense, useEffect, useState } from 'react'
+import { Button, IconButton, InputLabel, TextField, } from '@mui/material';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import HttpRequest from '../Utilities/ApiCall/HttpRequest';
 import login from "../asset/login2.jpg"
 import "./signin.css"
-// import { useDispatch, useSelector } from 'react-redux';
-// import { someAction } from '../action/index';
-import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import axios from 'axios';
 import WindowWidth from "../Utilities/index"
-// const Loader = React.lazy(() => import("../app/Utilities/Loader/Loader"))
-function SignIn(props) {
-    const { checkHandleFun } = props;
-    // const dispatch = useDispatch();
-    // const globalState = useSelector((state)=> state);
-
+import { useDispatch } from 'react-redux';
+function SignIn() {
     const [state, setState] = useState({
         email: "",
         password: "",
@@ -32,24 +23,11 @@ function SignIn(props) {
         
     })
     const navigate = useNavigate()
+    const dispatch = useDispatch();
+
     const { email, password, emailErr, passwordErr, errMsg, showPassword } = state;
 
-    useEffect(() => {
-        // const fetchData = async () => {
-        //     try {
-        //       const response = await axios.get('http://127.0.0.1:4000/sakthi');
-        //     //   setData(response.data);
-        //       console.log(response);
-        //     } catch (error) {
-        //         console.log(error);
-        //     //   setError(`API call failed: ${error.message}`);
-        //     } 
-        //   };
-
-          fetchData();
-   
-      
-    }, [])
+    
     const handleInputChange = (e, name, err) => {
         setState({
             ...state,
@@ -57,24 +35,18 @@ function SignIn(props) {
             [err]: false
         })
     }
-
-    const fetchData = async () => {
-        const method = "POST";
-        const url = "http://localhost:4000/update";
-        const request = {
-            "email": email,
-            "password": password
-        }
-        try {
-            const data = await HttpRequest({ method, url, request });
-            console.log('Data:', data);
-        } catch (error) {
-            console.error('Error:', error.message);
-        }
-    }
-
-
+    const updateThemeColors = (isDarkMode) => {
+        const body = document.body;
+        const primaryColor = isDarkMode ? '#343a40' : '#007bff';
+        const secondaryColor = isDarkMode ? '#ffc107' : '#6c757d';
+    
+        body.style.setProperty('--primary-color', primaryColor);
+        body.style.setProperty('--secondary-color', secondaryColor);
+      };
     const submitFun = () => {
+        updateThemeColors()
+        
+        emailOPt()
         let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         if (!email) {
             setState((prev) => ({
@@ -106,10 +78,46 @@ function SignIn(props) {
         }
     }
 
+    const emailOPt = () => {
+        setState({ ...state, showLoader: true })
+        const method = "Post";
+        const url = "shopy/send/email";
+        const data = {
+            "email": "sakthimsd531@gmail.com",
+           
+        }
+
+        const response = HttpRequest({ method, url, data });
+        response
+            .then((res) => {
+                console.log(res);
+                // setState({
+                //     ...state,
+                //     showLoader: false
+                // })
+                // localStorage.setItem("Auth", res.token)
+
+                // const token = !!localStorage.getItem("Auth")
+                // if (token) {
+                //     // dispatch(someAction(true));
+
+                // }
+                // navigate("/")
+
+            }).catch((err) => {
+                setState({
+                    ...state,
+                    showLoader: false
+                })
+            })
+    }
+
+
+
     const logInApiCall = () => {
         setState({ ...state, showLoader: true })
         const method = "Post";
-        const url = "productBazzar/login";
+        const url = "shopy/user/login";
         const data = {
             "email": email,
             "password": password
@@ -127,8 +135,8 @@ function SignIn(props) {
 
                 const token = !!localStorage.getItem("Auth")
                 if (token) {
-                    // dispatch(someAction(true));
-
+                    
+                    dispatch({type:"Auth"})
                 }
                 navigate("/")
 
@@ -152,15 +160,19 @@ function SignIn(props) {
             }
         })
     }
+
+    const forgotPassFun=()=>{
+        navigate("otp/valid")
+    }
     console.log();
 const size = WindowWidth()
     return (
         <div>
-            <div className='bg-success'>
-                <div className='p-0 w-100 d-flex jr-card py-3'>
+            <div className={size === "lg" ? 'overall-signin rounded': "overall-small"}>
+                <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 
                     {size === "lg" ?<div className='box-1 w-60'>
-                        <img src={login} className='w-100' />
+                        <img src={login} alt='login' className='w-100' />
                     </div> : null}
                     <div className={size ==="lg" ? 'box-2 w-40 bg-white': "w-100"}>
                         <div className='d-flex justify-content-center mx-3 ml-4'>
@@ -203,7 +215,7 @@ const size = WindowWidth()
                                     </FormControl>
                                 </div>
                                 <div>
-                                    <p className='text-start pt-4 text-primary '><span className='pointer'>Forgot Password</span></p>
+                                    <p className='text-start pt-4 text-info '><span className='pointer' onClick={()=> forgotPassFun()}>Forgot Password</span></p>
                                 </div>
                                 <div className='mt-4 py-3 mt-4'>
                                     <Button variant="contained"
@@ -212,7 +224,7 @@ const size = WindowWidth()
                                     >Submit</Button>
 
                                 </div>
-                                <div className='pb-2 pt-1'>Don't have an account <span className='text-primary pointer' onClick={() => goSignUp()}>SignUp</span></div>
+                                <div className='pb-2 pt-1'>Don't have an account <span className='text-info pointer' onClick={() => goSignUp()}>SignUp</span></div>
                             </div>
                         </div>
                     </div>
