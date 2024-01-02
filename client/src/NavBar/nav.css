@@ -53,10 +53,17 @@
     position: absolute;
     z-index: 100;
     width: 100%;
-    /* bottom: 0; */
     right: 0;
 }
+@media only screen and (min-width: 467px) {
+    .open-screen {
+        width: 70%;
+        transform: translate(-50%);
+ 
+    }
+  }
 .sideBar-content {
+    height: 100vh;
     padding-left: 70px;
     padding-top: 20px;
 }
@@ -64,8 +71,7 @@
     margin-right: 10px;
 }
 .item{
-    margin-top: 10px;
-    /* background-color: red; */
+    margin-top: 7px;
     padding: 10px 10px;
     border-radius: 10px;
 }
@@ -73,6 +79,6 @@
     margin-right: 20px;
 }
 .item:hover{
-    background-color: #89c2f8d5;
+    background-color: #c1c5c975;
     transition: all ease-out 0.5s;
 }

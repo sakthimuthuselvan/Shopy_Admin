@@ -35,13 +35,13 @@ function Index() {
           </IconButton>
         </div>
         <div className='title'>
-          <h1>heading</h1>
+          <h3>heading</h3>
         </div>
 
       </div>
       {isClicked ? <div className='layer'></div> : null}
-      <div className={isClicked ? "open-screen" : 'screen'}>
-      <div className='sideBar-content'>
+      <div className={isClicked ? "open-screen primary-bg " : 'screen primary-bg '}>
+      <div className='sideBar-content primary-bg '>
        <IconButton onClick={()=> closeBtnClick()}><CloseIcon className='iconItem text-white' /></IconButton>
 
        <div className='mt-3'>

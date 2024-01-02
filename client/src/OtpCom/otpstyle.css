@@ -1,0 +1,36 @@
+.otpInput{
+    background-color: rgba(209, 215, 219, 0.705);
+    border:none;
+    margin: 0 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+@media(min-width: 641px){
+    .otpInput{
+        width: 45px;
+        height: 45px;
+    } 
+}
+
+.otpContainer{
+    margin-top: 4rem;
+}
+
+.submit-btn{
+    margin-top: 8rem;
+}
+
+.otpInput:focus {
+    /* background-color: yellow; */
+    /* border-color: rgb(65, 130, 228); */
+    /* outline: #2767ac;
+    border-color: #2767ac; */
+    /* box-shadow: 0 0 10px #719ECE; */
+    outline: none !important;
+    border:3px solid rgb(87, 155, 218);
+    box-shadow: 0 0 10px #719ECE;
+  }

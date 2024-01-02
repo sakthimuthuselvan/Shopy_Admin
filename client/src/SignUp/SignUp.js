@@ -1,11 +1,13 @@
-import React, { Suspense, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Button, FilledInput, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, TextField, } from '@mui/material';
+import { Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, } from '@mui/material';
 import HttpRequest from "../Utilities/ApiCall/HttpRequest";
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
+import "./signup.css"
+import WindowWidth from "../Utilities/index"
+import login from "../asset/login2.jpg"
 
-// const Loader = React.lazy(() => import("../app/Utilities/Loader/Loader"))
 function SignUp() {
 
     const [state, setState] = useState({
@@ -22,7 +24,7 @@ function SignUp() {
         showPassword: false,
     })
     const navigate = useNavigate()
-    const { email, phone, password, showPassword, emailErr, passwordErr, errMsg, showLoader, name, nameErr, phoneErr } = state;
+    const { email, phone, password, showPassword, emailErr, passwordErr, errMsg, name, nameErr, phoneErr } = state;
 
 
     const handleInputChange = (e, name, err) => {
@@ -133,102 +135,100 @@ function SignUp() {
         navigate("/")
     }
 
+    const size = WindowWidth()
+
+
     return (
-        <div className='row m-0 p-0 vh-100 d-flex justify-content-center'>
-            {/* <Suspense fallback={<h1> </h1>}><Loader showLoader={showLoader} /></Suspense> */}
-            <div className='col-lg-4 col-md-4 col-sm-12  '>
-                <div className='jr-card d-flex justify-content-center mx-3'>
-                    <div className='text-center'>
-                        <h2>SignUp</h2>
-                        <div className='pt-4'>
-                            <TextField
-                                id='name'
-                                name='name'
-                                value={name}
-                                label="Name"
-                                variant="outlined"
-                                className='my-2 w-100'
-                                onChange={(e) => handleInputChange(e, "name", "nameErr")}
-                                error={nameErr}
-                                helperText={nameErr ? errMsg : null}
-                            />
+            <div>
+                <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
+                    <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 
-                            <TextField
-                                id='phone'
-                                name='phone'
-                                value={phone}
-                                label="Phone Number"
-                                variant="outlined"
-                                className='my-2 w-100'
-                                onChange={(e) => handleInputChange(e, "phone", "phoneErr")}
-                                error={phoneErr}
-                                helperText={phoneErr ? errMsg : null}
-                            />
-                            <TextField
-                                id='email'
-                                name='email'
-                                value={email}
-                                label="Email"
-                                variant="outlined"
-                                className='my-2 w-100'
-                                onChange={(e) => handleInputChange(e, "email", "emailErr")}
-                                error={emailErr}
-                                helperText={emailErr ? errMsg : null}
-                            />
-                            {/* <TextField
-                                id='password'
-                                name='password'
-                                value={password}
-                                label="Password"
-                                variant="outlined"
-                                className='my-2 w-100'
-                                onChange={(e) => handleInputChange(e, "password", "passwordErr")}
-                                error={passwordErr}
-                                helperText={passwordErr ? errMsg : null}
-                            /> */}
+                        {size === "lg" ? <div className='box-1 w-60'>
+                            <img src={login} alt='login' className='w-100 h-100' />
+                        </div> : null}
+                        <div className={size === "lg" ? 'box-2 w-40 bg-white' : "w-100"}>
+                            <div className='d-flex justify-content-center mx-3 ml-4'>
+                                <div className='text-center mt-4 mx-3'>
+                                    <h2>SignUp</h2>
+                                    <div className='pt-4'>
+                                        <TextField
+                                            id='name'
+                                            name='name'
+                                            value={name}
+                                            label="Name"
+                                            variant="outlined"
+                                            className='my-2 w-100'
+                                            onChange={(e) => handleInputChange(e, "name", "nameErr")}
+                                            error={nameErr}
+                                            helperText={nameErr ? errMsg : null}
+                                        />
 
-                            <FormControl
-                                id='password'
-                                className='my-2 w-100'
-                                variant="outlined"
-                                onChange={(e) => handleInputChange(e, "password", "passwordErr")}
-                                error={passwordErr}
-                                helperText={passwordErr ? errMsg : null}
-                            >
-                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-password"
-                                    type={showPassword ? 'text' : 'password'}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                            >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    label="Password"
-                                />
-                            </FormControl>
+                                        <TextField
+                                            id='phone'
+                                            name='phone'
+                                            value={phone}
+                                            label="Phone Number"
+                                            variant="outlined"
+                                            className='my-2 w-100'
+                                            onChange={(e) => handleInputChange(e, "phone", "phoneErr")}
+                                            error={phoneErr}
+                                            helperText={phoneErr ? errMsg : null}
+                                        />
+                                        <TextField
+                                            id='email'
+                                            name='email'
+                                            value={email}
+                                            label="Email"
+                                            variant="outlined"
+                                            className='my-2 w-100'
+                                            onChange={(e) => handleInputChange(e, "email", "emailErr")}
+                                            error={emailErr}
+                                            helperText={emailErr ? errMsg : null}
+                                        />
+
+                                        <FormControl
+                                            id='password'
+                                            className='my-2 w-100'
+                                            variant="outlined"
+                                            onChange={(e) => handleInputChange(e, "password", "passwordErr")}
+                                            error={passwordErr}
+                                            helperText={passwordErr ? errMsg : null}
+                                        >
+                                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                            <OutlinedInput
+                                                id="outlined-adornment-password"
+                                                type={showPassword ? 'text' : 'password'}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            onMouseDown={handleMouseDownPassword}
+                                                            edge="end"
+                                                        >
+                                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                                label="Password"
+                                            />
+                                        </FormControl>
+                                    </div>
+
+                                    <div className='mt-4 py-3 mt-4'>
+                                        <Button variant="contained"
+                                            className='w-100 bg-primary mt-3 py-2'
+                                            onClick={() => submitFun()}
+                                        >Submit</Button>
+                                    </div>
+
+                                    <div className='pb-2 pt-1'>Go to <span className='text-info pointer' onClick={() => goLogIn()}>LogIn</span></div>
+                                </div>
+                            </div>
                         </div>
-
-                        <div className='mt-4 py-3 mt-4'>
-                            <Button variant="contained"
-                                className='w-100 bg-secondary mt-3 py-2'
-                                onClick={() => submitFun()}
-                            >Submit</Button>
-                        </div>
-
-                        <div className='pb-2 pt-1'>Go to <span className='text-primary pointer' onClick={() => goLogIn()}>LogIn</span></div>
-
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 
