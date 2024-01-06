@@ -7,6 +7,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import "./signup.css"
 import WindowWidth from "../Utilities/index"
 import login from "../asset/login2.jpg"
+import Loader from '../Utilities/Loader/Loader';
 
 function SignUp() {
 
@@ -24,7 +25,7 @@ function SignUp() {
         showPassword: false,
     })
     const navigate = useNavigate()
-    const { email, phone, password, showPassword, emailErr, passwordErr, errMsg, name, nameErr, phoneErr } = state;
+    const { email, phone, password, showPassword, emailErr, passwordErr, errMsg, name, nameErr, phoneErr,showLoader } = state;
 
 
     const handleInputChange = (e, name, err) => {
@@ -83,14 +84,9 @@ function SignUp() {
             })
             document.getElementById("password").focus()
         } else {
-            if (!email === "sakthimsd531@gmail.com" && !password === "Sakthimsd531@") {
-                setState({
-                    ...state,
-                    passwordErr: true
-                })
-            } else {
+           
                 createUserFun()
-            }
+            
         }
     }
 
@@ -102,7 +98,8 @@ function SignUp() {
             "name": name,
             "phone": Number(phone),
             "email": email,
-            "password": password
+            "password": password,
+            "user_type":"admin"
         }
 
         const response = HttpRequest({ method, url, data });
@@ -140,6 +137,7 @@ function SignUp() {
 
     return (
             <div>
+                 <Loader open={showLoader}/>
                 <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
                     <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 

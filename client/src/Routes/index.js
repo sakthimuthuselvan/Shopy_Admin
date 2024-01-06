@@ -1,6 +1,6 @@
 import React from "react";
 
-const overview = React.lazy(()=> import('../OverView/OverView'))
+const overview = React.lazy(()=> import('../app/OverView/Index'))
  
 const RouteList = [
     {path: "/", component: overview}

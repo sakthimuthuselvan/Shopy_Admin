@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import WindowWidth from "../Utilities/index"
+import Loader from '../Utilities/Loader/Loader';
 import { useDispatch } from 'react-redux';
 function SignIn() {
     const [state, setState] = useState({
@@ -20,14 +21,14 @@ function SignIn() {
         errMsg: "",
         showLoader: false,
         showPassword: false,
-        
+
     })
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
-    const { email, password, emailErr, passwordErr, errMsg, showPassword } = state;
+    const { email, password, emailErr, passwordErr, errMsg, showPassword,showLoader } = state;
 
-    
+
     const handleInputChange = (e, name, err) => {
         setState({
             ...state,
@@ -35,19 +36,9 @@ function SignIn() {
             [err]: false
         })
     }
-    const updateThemeColors = (isDarkMode) => {
-        const body = document.body;
-        const primaryColor = isDarkMode ? '#343a40' : '#007bff';
-        const secondaryColor = isDarkMode ? '#ffc107' : '#6c757d';
-    
-        body.style.setProperty('--primary-color', primaryColor);
-        body.style.setProperty('--secondary-color', secondaryColor);
-      };
+
     const submitFun = () => {
-        updateThemeColors()
-        
-        emailOPt()
-        let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        let regex = /\S+@\S+\.\S+/
         if (!email) {
             setState((prev) => ({
                 ...prev,
@@ -78,43 +69,10 @@ function SignIn() {
         }
     }
 
-    const emailOPt = () => {
-        setState({ ...state, showLoader: true })
-        const method = "Post";
-        const url = "shopy/send/email";
-        const data = {
-            "email": "sakthimsd531@gmail.com",
-           
-        }
-
-        const response = HttpRequest({ method, url, data });
-        response
-            .then((res) => {
-                console.log(res);
-                // setState({
-                //     ...state,
-                //     showLoader: false
-                // })
-                // localStorage.setItem("Auth", res.token)
-
-                // const token = !!localStorage.getItem("Auth")
-                // if (token) {
-                //     // dispatch(someAction(true));
-
-                // }
-                // navigate("/")
-
-            }).catch((err) => {
-                setState({
-                    ...state,
-                    showLoader: false
-                })
-            })
-    }
-
 
 
     const logInApiCall = () => {
+        console.log(111);
         setState({ ...state, showLoader: true })
         const method = "Post";
         const url = "shopy/user/login";
@@ -126,17 +84,16 @@ function SignIn() {
         const response = HttpRequest({ method, url, data });
         response
             .then((res) => {
-                console.log(res);
+                const isToken = res.data && res.data.token ? res.data.token : ""
+                localStorage.setItem("_Auth", isToken)
                 setState({
                     ...state,
-                    showLoader: false
-                })
-                localStorage.setItem("Auth", res.token)
+                    showLoader: false,
 
-                const token = !!localStorage.getItem("Auth")
+                })
+                const token = !!localStorage.getItem("_Auth")
                 if (token) {
-                    
-                    dispatch({type:"Auth"})
+                    dispatch({ type: "Auth" })
                 }
                 navigate("/")
 
@@ -161,20 +118,20 @@ function SignIn() {
         })
     }
 
-    const forgotPassFun=()=>{
+    const forgotPassFun = () => {
         navigate("otp/valid")
     }
-    console.log();
-const size = WindowWidth()
+    const size = WindowWidth()
     return (
         <div>
-            <div className={size === "lg" ? 'overall-signin rounded': "overall-small"}>
+            <Loader open={showLoader}/>
+            <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
                 <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 
-                    {size === "lg" ?<div className='box-1 w-60'>
+                    {size === "lg" ? <div className='box-1 w-60'>
                         <img src={login} alt='login' className='w-100' />
                     </div> : null}
-                    <div className={size ==="lg" ? 'box-2 w-40 bg-white': "w-100"}>
+                    <div className={size === "lg" ? 'box-2 w-40 bg-white' : "w-100"}>
                         <div className='d-flex justify-content-center mx-3 ml-4'>
                             <div className='text-center mt-4 mx-3'>
                                 <h2>LogIn</h2>
@@ -215,7 +172,7 @@ const size = WindowWidth()
                                     </FormControl>
                                 </div>
                                 <div>
-                                    <p className='text-start pt-4 text-info '><span className='pointer' onClick={()=> forgotPassFun()}>Forgot Password</span></p>
+                                    <p className='text-start pt-4 text-info '><span className='pointer' onClick={() => forgotPassFun()}>Forgot Password</span></p>
                                 </div>
                                 <div className='mt-4 py-3 mt-4'>
                                     <Button variant="contained"

@@ -1,10 +1,10 @@
 import React from 'react'
-
+import Loader from '../../Utilities/Loader/Loader'
 function OverView() {
   return (
     <div>
-      {/* <OtpCom /> */}
-      {/* <ResetPassword /> */}
+      <h1>sakthi</h1>
+      <Loader open={false}/>
     </div>
   )
 }
