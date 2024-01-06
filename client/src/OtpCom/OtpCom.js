@@ -41,7 +41,7 @@ const OtpCom = () => {
         }
         else if(elmnt.target.value !== "") {
             const next = elmnt.target.tabIndex;
-            if (next < 5) {
+            if (next < 6) {
                 elmnt.target.form.elements[next].focus()
             }
         }
