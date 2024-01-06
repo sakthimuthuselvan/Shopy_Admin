@@ -111,8 +111,6 @@ const {showPassword1,showPassword2,password,passwordErr,confirmPassword,confirmP
   return (
     <div>
         <MySnackbar open={true} type={"success"} variant={"filled"} message={"OTP sent successfully"} duration={3000}/>
-
-
       <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
                 <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 
