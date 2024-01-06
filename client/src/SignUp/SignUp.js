@@ -8,6 +8,7 @@ import "./signup.css"
 import WindowWidth from "../Utilities/index"
 import login from "../asset/login2.jpg"
 import Loader from '../Utilities/Loader/Loader';
+import MySnackbar from '../AlertShow/Alert';
 
 function SignUp() {
 
@@ -23,9 +24,12 @@ function SignUp() {
         errMsg: "",
         showLoader: false,
         showPassword: false,
+        openSnackbar: false,
+        snackType: "success",
+        snackMessage: ""
     })
     const navigate = useNavigate()
-    const { email, phone, password, showPassword, emailErr, passwordErr, errMsg, name, nameErr, phoneErr,showLoader } = state;
+    const { email, phone, password, showPassword, emailErr, passwordErr, errMsg, name, nameErr, phoneErr,showLoader,openSnackbar,snackType,snackMessage  } = state;
 
 
     const handleInputChange = (e, name, err) => {
@@ -115,7 +119,10 @@ function SignUp() {
             }).catch((err) => {
                 setState({
                     ...state,
-                    showLoader: false
+                    showLoader: false,
+                    openSnackbar: true,
+                    snackType: "error",
+                    snackMessage:err.message
                 })
             })
     }
@@ -138,6 +145,8 @@ function SignUp() {
     return (
             <div>
                  <Loader open={showLoader}/>
+                 <MySnackbar open={openSnackbar} type={snackType} variant={"filled"} message={snackMessage} duration={3000}/>
+
                 <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
                     <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 

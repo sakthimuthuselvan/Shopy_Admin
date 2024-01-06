@@ -12,6 +12,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import WindowWidth from "../Utilities/index"
 import Loader from '../Utilities/Loader/Loader';
 import { useDispatch } from 'react-redux';
+import MySnackbar from '../AlertShow/Alert';
+
 function SignIn() {
     const [state, setState] = useState({
         email: "",
@@ -21,12 +23,16 @@ function SignIn() {
         errMsg: "",
         showLoader: false,
         showPassword: false,
+        openSnackbar: false,
+        snackType: "success",
+        snackMessage: ""
+
 
     })
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
-    const { email, password, emailErr, passwordErr, errMsg, showPassword,showLoader } = state;
+    const { email, password, emailErr, passwordErr, errMsg, showPassword,showLoader,openSnackbar,snackType,snackMessage } = state;
 
 
     const handleInputChange = (e, name, err) => {
@@ -98,9 +104,13 @@ function SignIn() {
                 navigate("/")
 
             }).catch((err) => {
+
                 setState({
                     ...state,
-                    showLoader: false
+                    showLoader: false,
+                    openSnackbar: true,
+                    snackType: "error",
+                    snackMessage:err.message
                 })
             })
     }
@@ -125,6 +135,8 @@ function SignIn() {
     return (
         <div>
             <Loader open={showLoader}/>
+            <MySnackbar open={openSnackbar} type={snackType} variant={"filled"} message={snackMessage} duration={3000}/>
+
             <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
                 <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
 
