@@ -5,13 +5,16 @@ $success: #06CB4E;
 $danger: #F44B62;
 $warning: #FFBF00;
 $info: #2054F7;
-
+$orange:orange;
 .btn-primary {
     background: #3A78CA;
 }
 .primary-bg{
     background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+.texr-orange{
+    color: orange !important;
 }
 .vw-90{
     width: 90vw;
@@ -52,7 +55,12 @@ $info: #2054F7;
    
 }
 
-
+.fs-15{
+    font-size: 15px !important;
+}
+.bold{
+    font-weight: bold !important;
+}
 
 // Light Theme 
 .bg-light{

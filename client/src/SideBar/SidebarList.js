@@ -15,6 +15,42 @@ const SideBarList =[
       "icon": <AssessmentIcon className="text-white icon"/>
     },
     {
+      "name":"Categorys",
+      "path":"",
+      "icon": <CategoryIcon className="text-white icon" />,
+      "moreOptions": true,
+      "others":[
+        {
+          "name":"Parent Category",
+          "path":"/category",
+          "icon": <CategoryIcon className="text-white icon" />,
+        },
+        {
+          "name":"Child Category",
+          "path":"/category/child",
+          "icon": <CategoryIcon className="text-white icon" />,
+        }
+      ]
+    },
+    {
+      "name":"Advertisment",
+      "path":"",
+      "icon": <CategoryIcon className="text-white icon" />,
+      "moreOptions": true,
+      "others":[
+        {
+          "name":"Slider",
+          "path":"/slider",
+          "icon": <CategoryIcon className="text-white icon" />,
+        },
+        {
+          "name":"Addvertisment Card",
+          "path":"/advertisment/banner",
+          "icon": <CategoryIcon className="text-white icon" />,
+        }
+      ]
+    },
+    {
       "name":"Products",
       "path":"/",
       "icon": <CategoryIcon className="text-white icon" />
@@ -50,6 +86,21 @@ const SideBarList =[
       "name":"Shipping",
       "path":"/",
       "icon": <LocalShippingIcon className="text-white icon"/>
+    },
+    {
+      "name":"User",
+      "path":"/",
+      "icon": <PersonIcon className="text-white icon"/>
+    },
+    {
+      "name":"User",
+      "path":"/",
+      "icon": <PersonIcon className="text-white icon"/>
+    },
+    {
+      "name":"User",
+      "path":"/",
+      "icon": <PersonIcon className="text-white icon"/>
     },
     {
       "name":"User",

@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 console.log(baseUrl);
-const HttpRequest = async ({ method, url, data }) => {
+const HttpImageApiCall = async ({ method, url, data }) => {
   
   try {
     const token = localStorage.getItem('_Auth');
@@ -13,7 +13,7 @@ const HttpRequest = async ({ method, url, data }) => {
       data: data,
       headers: {
         Authorization: `Bearer ${token}`,
-        'Content-Type': "application/json",
+        'Content-Type':'multipart/form-data' ,
       },
     });
 
@@ -25,5 +25,5 @@ const HttpRequest = async ({ method, url, data }) => {
   }
 };
 
-export default HttpRequest;
+export default HttpImageApiCall;
 

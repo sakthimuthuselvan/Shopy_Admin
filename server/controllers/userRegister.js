@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
     if (!isValidPassword) {
       return res.status(400).json({ response: "failure", message: "Your password is incorrect. please try again." })
     }
-    const token = jwt.sign({ user_id: user._id }, "_SHOPY", { expiresIn: '15min' })
+    const token = jwt.sign({ user_id: user._id }, "_SHOPY", { expiresIn: '2min' })
     const data = await UserSchema.updateOne({ email }, { lastLogin: new Date() })
     console.log(data);
     return res.status(200).json({ response_type: "success", response_message: "Login Successfully", data: { token: token } })
