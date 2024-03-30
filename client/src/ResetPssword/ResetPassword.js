@@ -96,7 +96,6 @@ const {showPassword1,showPassword2,password,passwordErr,confirmPassword,confirmP
       
         try {
           const response = await HttpRequest({ method, url, data });
-          console.log(response);
           setState({
             confirmPasswordErr: false,
             passwordErr: false

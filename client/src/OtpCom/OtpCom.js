@@ -31,7 +31,6 @@ const OtpCom = () => {
     }
 
     const inputfocus = (elmnt) => {
-        console.log(elmnt.target.value);
         if (elmnt.key === "Delete" || elmnt.key === "Backspace") {
             const next = elmnt.target.tabIndex - 2;
             if (next > -1) {

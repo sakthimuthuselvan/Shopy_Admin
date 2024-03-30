@@ -4,13 +4,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SideBarList from "../SideBar/SidebarList";
+import { useNavigate} from "react-router-dom";
 
 function Index() {
   const [state, setState] = useState({
     isClicked: false,
     SideBarList: SideBarList
   })
+
+  const navigate = useNavigate()
   const {isClicked} =state;
+  
   const menuBtnClick = () => {
     setState({
       ...state,
@@ -24,7 +28,14 @@ function Index() {
       isClicked: false
     })
   }
-  console.log(isClicked)
+
+  const listBtnClick=(item)=>{
+    navigate(item.path)
+    setState((pre)=>({
+      ...pre,
+      isClicked: false
+    }))
+  }
   return (
     <div className={'nav'}>
       <div className='overall-nav primary-bg text-white'>
@@ -48,7 +59,7 @@ function Index() {
           {SideBarList.map((item)=>{
             return(
               <div className='item'>
-                <h5><span className='icon-right'>{item.icon}</span>{item.name}</h5>
+                <h5 onClick={()=> listBtnClick(item)}><span className='icon-right'>{item.icon}</span>{item.name}</h5>
                 </div>
             )
           })}
