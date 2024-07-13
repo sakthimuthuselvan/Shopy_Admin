@@ -8,6 +8,11 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
+import FeaturedVideoIcon from '@mui/icons-material/FeaturedVideo';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import ViewAgendaIcon from '@mui/icons-material/ViewAgenda';
+import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
+
 const SideBarList =[
     {
       "name":"Overview",
@@ -35,25 +40,25 @@ const SideBarList =[
     {
       "name":"Advertisment",
       "path":"",
-      "icon": <CategoryIcon className="text-white icon" />,
+      "icon": <FeaturedVideoIcon className="text-white icon" />,
       "moreOptions": true,
       "others":[
         {
           "name":"Slider",
           "path":"/slider",
-          "icon": <CategoryIcon className="text-white icon" />,
+          "icon": <ViewCarouselIcon className="text-white icon" />,
         },
         {
           "name":"Addvertisment Card",
           "path":"/advertisment/banner",
-          "icon": <CategoryIcon className="text-white icon" />,
+          "icon": <ViewAgendaIcon className="text-white icon" />,
         }
       ]
     },
     {
       "name":"Products",
-      "path":"/",
-      "icon": <CategoryIcon className="text-white icon" />
+      "path":"/product",
+      "icon": <BreakfastDiningIcon className="text-white icon" />
     },
     {
       "name":"Orders",

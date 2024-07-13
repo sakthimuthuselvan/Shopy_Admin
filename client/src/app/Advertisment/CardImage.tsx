@@ -8,6 +8,7 @@ import MuiTable from '../Common/MuiTable';
 import CancelIcon from '@mui/icons-material/Cancel';
 import MySnackbar from '../../AlertShow/Alert';
 import Loader from '../../Utilities/Loader/Loader';
+import { base_url } from '../EnvImport/Index';
 
 
 interface state {
@@ -38,7 +39,7 @@ interface state {
 const CardImage: React.FC = () => {
   const imageInput = useRef<HTMLInputElement>(null);
   const navigateInputFocus = useRef<HTMLInputElement>(null);
-  const baseUrlPath: string = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : "";
+  const baseUrlPath: string = base_url;
 
   const [state, setState] = useState<state>({
     headerData: [
@@ -88,7 +89,6 @@ const CardImage: React.FC = () => {
 
 
   useEffect(() => {
-    console.log('Effect running');
     listApiCall();
   }, []);
 
@@ -111,11 +111,9 @@ const CardImage: React.FC = () => {
     setState((pre) => ({ ...pre, showLoader: true }))
     try {
       const response = await HttpRequest({ method, url, data });
-      console.log(response.response_data);
       setState((pre) => ({ ...pre, showLoader: false }))
       frameTableFun(response.response_data)
     } catch (error) {
-      console.log(error.error_response);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -150,8 +148,6 @@ const CardImage: React.FC = () => {
     }))
   }
   const editBtnClick = (data: any): void => {
-    console.log(data);
-
     setState((pre) => ({
       ...pre,
       selectedItem: data,
@@ -179,19 +175,14 @@ const CardImage: React.FC = () => {
       imageVal: {},
       navigatePathErr: false,
       imgInputErr: false,
-      submitDisable: false
+      submitDisable: false,
     }))
   }
 
   const handleFileChange = (event: any): void => {
     const selectedFile = event.target.files[0]
     // Handle the selected file as needed
-    if (selectedFile.size > 200 * 1024) {
-      setState((pre) => ({
-        ...pre,
-        image: true
-      }))
-    } else {
+   
       setState((pre) => ({
         ...pre,
         imageVal: selectedFile,
@@ -201,7 +192,6 @@ const CardImage: React.FC = () => {
       }))
     }
 
-  };
   const handleChange = (e): void => {
     setState((pre) => ({
       ...pre,
@@ -216,7 +206,6 @@ const CardImage: React.FC = () => {
     const data = {}
     try {
       const response = await HttpRequest({ method, url, data });
-      console.log(response);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -226,7 +215,6 @@ const CardImage: React.FC = () => {
       }))
       listApiCall()
     } catch (error) {
-      console.log(error.response_message);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -261,19 +249,14 @@ const CardImage: React.FC = () => {
 
     } else {
       if (isEdit && isCheck) {
-        console.log("edit api call with imag");
-        //img api call
+        //edit api call with imag
         imageUploadApiCall()
-
-        // edit api call
       } else if (isEdit === false && isCheck === true) {
-        console.log("addAPi call with imag");
-        // image upload and add api call
+        // addAPi call with imag
         imageUploadApiCall()
       } else {
+        //edit api call without image api call
         editAPiCall()
-        console.log("edit api call without image api call");
-
       }
     }
   }
@@ -287,7 +270,6 @@ const CardImage: React.FC = () => {
     const data: any = formData
     try {
       const response = await HttpImageApiCall({ method, url, data });
-      console.log();
       setState((pre) => ({
         ...pre,
         uploadImgPath: response.imageUrl,
@@ -296,7 +278,6 @@ const CardImage: React.FC = () => {
         openDialog: false
       }))
     } catch (error) {
-      console.log(error.error_response);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -308,8 +289,6 @@ const CardImage: React.FC = () => {
   }
 
   const editAPiCall = async (): Promise<void> => {
-    console.log("selectedItem ", selectedItem);
-
     const method = "PUT";
     const url: string = `addvertisment/update/image/ads/${selectedItem._id}`;
     const data: any = {
@@ -318,7 +297,6 @@ const CardImage: React.FC = () => {
     }
     try {
       const response = await HttpRequest({ method, url, data });
-      console.log(response);
       setState((pre) => ({
         ...pre,
         openDialog: false,
@@ -328,7 +306,6 @@ const CardImage: React.FC = () => {
       }))
       listApiCall()
     } catch (error) {
-      console.log(error);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -348,7 +325,6 @@ const CardImage: React.FC = () => {
     }
     try {
       const response = await HttpRequest({ method, url, data });
-      console.log(response);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -358,7 +334,6 @@ const CardImage: React.FC = () => {
       }))
       listApiCall()
     } catch (error) {
-      console.log(error);
       setState((pre) => ({
         ...pre,
         openSnakbar: true,
@@ -368,8 +343,6 @@ const CardImage: React.FC = () => {
       }))
     }
   }
-  console.log(isEdit);
-
 
   const viewImageDialog = (): void => {
     setState((pre) => ({
@@ -382,7 +355,7 @@ const CardImage: React.FC = () => {
       <Loader open={showLoader} />
 
       <MySnackbar open={openSnakbar} type={openSnakbarType} variant={"filled"} message={openSnakbarMsg} duration={3000} handleClose={() => setState((pre) => ({ ...pre, openSnakbar: false }))} />
-      <div className='jr-card mt-3 d-flex justify-content-between align-items-center'>
+      <div className='jr-card d-flex justify-content-between align-items-center'>
         <h4 className='bold'>Card Advertisment</h4>
         {/* Button component with onClick event */}
         <Button
@@ -399,6 +372,7 @@ const CardImage: React.FC = () => {
         <MuiTable
           headerData={headerData}
           columnData={columnData}
+          options={""}
         />
       </div>
 

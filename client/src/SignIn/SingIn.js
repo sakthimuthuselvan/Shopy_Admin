@@ -32,7 +32,7 @@ function SignIn() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
 
-    const { email, password, emailErr, passwordErr, errMsg, showPassword,showLoader,openSnackbar,snackType,snackMessage } = state;
+    const { email, password, emailErr, passwordErr, errMsg, showPassword, showLoader, openSnackbar, snackType, snackMessage } = state;
 
 
     const handleInputChange = (e, name, err) => {
@@ -110,7 +110,7 @@ function SignIn() {
                     showLoader: false,
                     openSnackbar: true,
                     snackType: "error",
-                    snackMessage:err.message
+                    snackMessage: err.message
                 })
             })
     }
@@ -134,8 +134,8 @@ function SignIn() {
     const size = WindowWidth()
     return (
         <div>
-            <Loader open={showLoader}/>
-            <MySnackbar open={openSnackbar} type={snackType} variant={"filled"} message={snackMessage} duration={3000}/>
+            <Loader open={showLoader} />
+            <MySnackbar open={openSnackbar} type={snackType} variant={"filled"} message={snackMessage} duration={3000} />
 
             <div className={size === "lg" ? 'overall-signin rounded' : "overall-small"}>
                 <div className={`p-0 w-100 d-flex ${size === "lg" ? "jr-card jr-card-style" : ""}`}>
@@ -148,51 +148,57 @@ function SignIn() {
                             <div className='text-center mt-4 mx-3'>
                                 <h2>LogIn</h2>
                                 <p>LogIn into the account</p>
-                                <div className='pt-4'>
-                                    <TextField
-                                        id='email'
-                                        value={email}
-                                        label="Email"
-                                        variant="outlined"
-                                        className='my-2 w-100'
-                                        onChange={(e) => handleInputChange(e, "email", "emailErr")}
-                                        error={emailErr}
-                                        helperText={emailErr ? errMsg : null}
-                                    />
-
-                                    <FormControl className='my-2 w-100' variant="outlined" error={passwordErr}>
-                                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                                        <OutlinedInput
-                                            id="password"
-                                            type={showPassword ? 'text' : 'password'}
-                                            endAdornment={
-                                                <InputAdornment position="end">
-                                                    <IconButton
-                                                        aria-label="toggle password visibility"
-                                                        onClick={handleClickShowPassword}
-                                                        edge="end"
-                                                    >
-                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                                    </IconButton>
-                                                </InputAdornment>
-                                            }
-                                            label="Password"
-                                            onChange={(e) => handleInputChange(e, "password", "passwordErr")}
-                                            error={passwordErr}
-                                            helperText={passwordErr ? errMsg : null}
+                                <form onSubmit={(e)=>{
+                                    e.preventDefault();
+                                    submitFun()
+                                }}>
+                                    <div className='pt-4'>
+                                        <TextField
+                                            id='email'
+                                            value={email}
+                                            label="Email"
+                                            type='email'
+                                            variant="outlined"
+                                            className='my-2 w-100'
+                                            onChange={(e) => handleInputChange(e, "email", "emailErr")}
+                                            error={emailErr}
+                                            helperText={emailErr ? errMsg : null}
                                         />
-                                    </FormControl>
-                                </div>
-                                <div>
-                                    <p className='text-start pt-4 text-info '><span className='pointer' onClick={() => forgotPassFun()}>Forgot Password</span></p>
-                                </div>
-                                <div className='mt-4 py-3 mt-4'>
-                                    <Button variant="contained"
-                                        className='w-100 bg-primary mt-3 py-2'
-                                        onClick={() => submitFun()}
-                                    >Submit</Button>
 
-                                </div>
+                                        <FormControl className='my-2 w-100' variant="outlined" error={passwordErr}>
+                                            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                            <OutlinedInput
+                                                id="password"
+                                                type={showPassword ? 'text' : 'password'}
+                                                endAdornment={
+                                                    <InputAdornment position="end">
+                                                        <IconButton
+                                                            aria-label="toggle password visibility"
+                                                            onClick={handleClickShowPassword}
+                                                            edge="end"
+                                                        >
+                                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                }
+                                                label="Password"
+                                                onChange={(e) => handleInputChange(e, "password", "passwordErr")}
+                                                error={passwordErr}
+                                                helperText={passwordErr ? errMsg : null}
+                                            />
+                                        </FormControl>
+                                    </div>
+                                    <div>
+                                        <p className='text-start pt-4 text-info '><span className='pointer' onClick={() => forgotPassFun()}>Forgot Password</span></p>
+                                    </div>
+                                    <div className='mt-4 py-3 mt-4'>
+                                        <Button variant="contained"
+                                            className='w-100 bg-primary mt-3 py-2'
+                                            onClick={() => submitFun()}
+                                            type='submit'
+                                        >Submit</Button>
+                                    </div>
+                                </form>
                                 <div className='pb-2 pt-1'>Don't have an account <span className='text-info pointer' onClick={() => goSignUp()}>SignUp</span></div>
                             </div>
                         </div>
