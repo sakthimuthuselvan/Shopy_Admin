@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const OtpCom = () => {
     const [state, setState] = useState({
-        value: '', otp1: "", otp2: "", otp3: "", otp4: "", otp5: "", otp6:"",disable: true
+        value: '', otp1: "", otp2: "", otp3: "", otp4: "", otp5: "", otp6: "", disable: true
     })
 
     const navigate = useNavigate()
@@ -17,7 +17,7 @@ const OtpCom = () => {
 
 
     const handleChange = (value1, event) => {
-        let value = event.target.value.replace(/\D/,"")
+        let value = event.target.value.replace(/\D/, "")
         setState((pre) => ({
             ...pre,
             [value1]: value
@@ -38,7 +38,7 @@ const OtpCom = () => {
                 elmnt.target.form.elements[next].focus()
             }
         }
-        else if(elmnt.target.value !== "") {
+        else if (elmnt.target.value !== "") {
             const next = elmnt.target.tabIndex;
             if (next < 6) {
                 elmnt.target.form.elements[next].focus()
@@ -47,7 +47,7 @@ const OtpCom = () => {
     }
 
 
-    const verifyOTPFun=()=>{
+    const verifyOTPFun = () => {
         navigate("/reset/password")
     }
 
@@ -70,91 +70,77 @@ const OtpCom = () => {
 
                                 <div className=''>
 
-                                <form onSubmit={handleSubmit}>
-                                    <div className="otpContainer">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="otpContainer">
 
-                                        <input
-                                            name="otp1"
-                                            type="text"
-                                            autoComplete="off"
-                                            className="otpInput"
-                                            value={state.otp1}
-                                            // onKeyPress={this.keyPressed}
-                                            onChange={e => handleChange("otp1", e)}
-                                            tabIndex="1" maxLength="1" onKeyUp={e => inputfocus(e)}
+                                            <input
+                                                name="otp1"
+                                                type="text"
+                                                autoComplete="off"
+                                                className="otpInput"
+                                                value={state.otp1}
+                                                // onKeyPress={this.keyPressed}
+                                                onChange={e => handleChange("otp1", e)}
+                                                tabIndex="1" maxLength="1" onKeyUp={e => inputfocus(e)}
 
-                                        />
-                                        <input
-                                            name="otp2"
-                                            type="text"
-                                            autoComplete="off"
-                                            className="otpInput"
-                                            value={state.otp2}
-                                            onChange={e => handleChange("otp2", e)}
-                                            tabIndex="2" maxLength="1" onKeyUp={e => inputfocus(e)}
+                                            />
+                                            <input
+                                                name="otp2"
+                                                type="text"
+                                                autoComplete="off"
+                                                className="otpInput"
+                                                value={state.otp2}
+                                                onChange={e => handleChange("otp2", e)}
+                                                tabIndex="2" maxLength="1" onKeyUp={e => inputfocus(e)}
 
-                                        />
-                                        <input
-                                            name="otp3"
-                                            type="text"
-                                            autoComplete="off"
-                                            className="otpInput"
-                                            value={state.otp3}
-                                            onChange={e => handleChange("otp3", e)}
-                                            tabIndex="3" maxLength="1" onKeyUp={e => inputfocus(e)}
+                                            />
+                                            <input
+                                                name="otp3"
+                                                type="text"
+                                                autoComplete="off"
+                                                className="otpInput"
+                                                value={state.otp3}
+                                                onChange={e => handleChange("otp3", e)}
+                                                tabIndex="3" maxLength="1" onKeyUp={e => inputfocus(e)}
 
-                                        />
-                                        <input
-                                            name="otp4"
-                                            type="text"
-                                            autoComplete="off"
-                                            className="otpInput"
-                                            value={state.otp4}
-                                            onChange={e => handleChange("otp4", e)}
-                                            tabIndex="4" maxLength="1" onKeyUp={e => inputfocus(e)}
-                                        />
+                                            />
+                                            <input
+                                                name="otp4"
+                                                type="text"
+                                                autoComplete="off"
+                                                className="otpInput"
+                                                value={state.otp4}
+                                                onChange={e => handleChange("otp4", e)}
+                                                tabIndex="4" maxLength="1" onKeyUp={e => inputfocus(e)}
+                                            />
 
-                                        <input
-                                            name="otp5"
-                                            type="text"
-                                            autoComplete="off"
-                                            className="otpInput"
-                                            value={state.otp5}
-                                            onChange={e => handleChange("otp5", e)}
-                                            tabIndex="5" maxLength="1" onKeyUp={e => inputfocus(e)}
-                                        />
-                                           <input
-                                            name="otp6"
-                                            type="text"
-                                            autoComplete="off"
-                                            className="otpInput"
-                                            value={state.otp6}
-                                            onChange={e => handleChange("otp6", e)}
-                                            tabIndex="6" maxLength="1" onKeyUp={e => inputfocus(e)}
-                                        />
-                                    </div>
-                                   <div className='submit-btn'>
-                                   <Button variant="contained"
-                                        className='w-100 bg-primary mt-3 py-2'
-                                        onClick={()=> verifyOTPFun()}
-                                    >Verify OTP</Button>
-                                   </div>
-                                </form>
-
+                                            <input
+                                                name="otp5"
+                                                type="text"
+                                                autoComplete="off"
+                                                className="otpInput"
+                                                value={state.otp5}
+                                                onChange={e => handleChange("otp5", e)}
+                                                tabIndex="5" maxLength="1" onKeyUp={e => inputfocus(e)}
+                                            />
+                                            <input
+                                                name="otp6"
+                                                type="text"
+                                                autoComplete="off"
+                                                className="otpInput"
+                                                value={state.otp6}
+                                                onChange={e => handleChange("otp6", e)}
+                                                tabIndex="6" maxLength="1" onKeyUp={e => inputfocus(e)}
+                                            />
+                                        </div>
+                                        <div className='submit-btn'>
+                                            <Button variant="contained"
+                                                className='w-100 bg-primary mt-3 py-2'
+                                                onClick={() => verifyOTPFun()}
+                                            >Verify OTP</Button>
+                                        </div>
+                                    </form>
                                 </div>
-
-
-
-
-                                {/* <div>
-                                    <p className='text-start pt-4 text-info '><span className='pointer'>Forgot Password</span></p>
-                                </div>
-                                <div className='mt-4 py-3 mt-4'>
-                                    <Button variant="contained"
-                                        className='w-100 bg-secondary mt-3 py-2'
-                                        onClick={() => submitFun()}
-                                    >Submit</Button> */}
-
                             </div>
                         </div>
                     </div>

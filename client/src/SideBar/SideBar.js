@@ -102,12 +102,12 @@ function SideBar() {
                       return (
                         <div>
                           {childSelected.name === data.name ?
-                           <div style={{ fontSize: 15, marginLeft: 6,}} onClick={() => childRouteNavigate(data)} className={`${childCheck ? 'child-route-selected' : ""} d-flex iconDiv cursor-pointer ml-1 texr-orange`}>
+                           <div style={{ fontSize: 15, marginLeft: 25,}} onClick={() => childRouteNavigate(data)} className={`${childCheck ? 'child-route-selected' : ""} d-flex iconDiv cursor-pointer ml-1 texr-orange`}>
                            {data.icon}
                            <div className=' show fw-bold ms-2'>{data.name}</div>
                          </div>
                          : 
-                          <div style={{ fontSize: 15, marginLeft: 6 }} onClick={() => childRouteNavigate(data)} className={`${childCheck ? 'child-route-selected' : ""} d-flex iconDiv cursor-pointer ml-1`}>
+                          <div style={{ fontSize: 15, marginLeft: 25 }} onClick={() => childRouteNavigate(data)} className={`${childCheck ? 'child-route-selected' : ""} d-flex iconDiv cursor-pointer ml-1`}>
                          {data.icon}
                          <div className='text-white show fw-bold ms-2'>{data.name}</div>
                        </div>
@@ -135,107 +135,3 @@ function SideBar() {
 }
 
 export default SideBar
-
-
-
-// function SideBar() {
-//   const [state, setState] = useState({
-//     check: false,
-//     viewMore: false,
-//     childCheck: false,
-//     selectedItem: {}
-
-//   })
-
-//   const { check, selectedItem, viewMore, childCheck } = state;
-//   const navigate = useNavigate()
-//   const selecSidemenu = (item, childRoute) => {
-
-//     // if (childRoute) {
-//     //   let path = item.path
-//     //   if (path) {
-//     //     navigate(path)
-//     //   }
-//     //   setState((pre) => ({
-//     //     ...pre,
-//     //     childCheck: true,
-//     //     selectedItem: item
-//     //   }))
-//     // } else {
-
-//     let path = item.path
-//     if (path) {
-//       navigate(path)
-//     }
-//     setState((pre) => ({
-//       ...pre,
-//       check: true,
-//       selectedItem: item
-//     }))
-//     // }
-
-
-//   }
-
-//   const moreBtnClick = () => {
-//     setState((pre) => ({
-//       ...pre,
-//       viewMore: !viewMore,
-//     }))
-//   }
-
-//   const whenLeaveMouse = () => {
-//     setState((pre) => ({
-//       ...pre,
-//       // viewMore: true,
-//     }))
-//   }
-
-//   const childRouteNavigate = (data) => {
-//    navigate(data.path)
-//   }
-//   return (
-//     <div className='primary-bg'>
-//       <div onMouseLeave={() => whenLeaveMouse()} className={` sideNav pt-10vh  `}>
-//       <div className='position-fixed'>
-//       {
-//         SideBarList.map((item) => {
-//           if (item.name === selectedItem.name) {
-//             return (
-//               <div>
-//                 <div onClick={() => selecSidemenu(item)} className={`${check ? 'selected' : ""} d-flex iconDiv cursor-pointer ml-1`}>
-//                   {item.icon}
-//                   <div className='show fw-bold text-white ms-2'>{item.name} {item.moreOptions ? <span onClick={() => moreBtnClick()}>{viewMore ? <KeyboardArrowUpIcon />: <KeyboardArrowDownIcon />}</span> : null}</div>
-//                 </div>
-//                 {viewMore ?
-//                   <div>
-//                     {item.others.map((data) => {
-//                       return (
-//                         <div>
-//                           <div style={{ fontSize: 15, marginLeft: 6 }} onClick={() => childRouteNavigate(data)} className={`${childCheck ? 'child-route-selected' : ""} d-flex iconDiv cursor-pointer ml-1`}>
-//                             {data.icon}
-//                             <div className='text-white show fw-bold ms-2'>{data.name}</div>
-//                           </div>
-//                         </div>
-//                       )
-//                     })}
-//                   </div> : null}
-//               </div>
-//             )
-//           } else {
-//             return (
-//               <div onClick={() => selecSidemenu(item)} className={`d-flex iconDiv cursor-pointer ml-1`}>
-//                 {item.icon}
-//                 <div className='show fw-bold text-white ms-2'>{item.name}  {item.moreOptions ? <span onClick={() => moreBtnClick()}>{viewMore ? <KeyboardArrowUpIcon />: <KeyboardArrowDownIcon />}</span> : null}</div>
-//               </div>
-//             )
-//           }
-
-//         })
-//       }
-//       </div>
-//     </div>
-//     </div>)
-// }
-
-// export default SideBar

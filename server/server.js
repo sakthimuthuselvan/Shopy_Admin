@@ -4,13 +4,18 @@ const userSignup = require("./routes/usersCreate");
 const parentCategory = require("./routes/parentCategory")
 const childCategory = require("./routes/childCategory")
 const advertisment = require("./routes/advertisment")
+const sliderCom = require("./routes/slider")
+const product = require("./routes/product")
 
+const addtoCart = require("./routes/addtoCart");
+const whishList = require("./routes/wishList");
 
 const mongoose = require('mongoose');
 const { upload } = require("./uploadMiddleware")
 const bodyParser = require('body-parser')
 
 const singleImgUpload = require("./utilities/singleImgUpload");
+const imageUpload = require("./utilities/imageUpload");
 
 const cors = require('cors');
 require('dotenv').config()
@@ -44,12 +49,18 @@ dbConnect()
 //     }
 // });
 
-app.use("/single/image/upload",singleImgUpload)
+app.use("/",singleImgUpload)
+app.use("/",imageUpload)
+
 app.use("/shopy", userSignup)
 app.use("/category", parentCategory)
 app.use("/category", childCategory)
 app.use("/addvertisment", advertisment)
+app.use("/slider", sliderCom)
+app.use("/product", product)
 
+app.use("/shopy",addtoCart)
+app.use("/shopy",whishList)
 
 
 app.listen(port, () => {

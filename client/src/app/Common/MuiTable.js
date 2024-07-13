@@ -8,7 +8,7 @@ import { mkConfig, generateCsv, download } from 'export-to-csv'; //or use your l
 
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
-const MuiTable = ({ headerData, columnData }) => {
+const MuiTable = ({ headerData, columnData, options }) => {
     const data = columnData
     const columns = headerData;
 
@@ -35,13 +35,15 @@ const MuiTable = ({ headerData, columnData }) => {
         renderTopToolbarCustomActions: ({ table }) => (
             <div><Button onClick={handleExportData} startIcon={<FileDownloadIcon />}>Export </Button></div>
         ),
-        enableClickToCopy: true
+        enableClickToCopy: true,
+        ...options
     });
 
     return (
         <div>
             <MaterialReactTable
                 table={table}
+                
             />
         </div>
     )

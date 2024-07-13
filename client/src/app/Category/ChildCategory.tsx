@@ -8,6 +8,7 @@ import MuiTable from '../Common/MuiTable';
 import CancelIcon from '@mui/icons-material/Cancel';
 import MySnackbar from '../../AlertShow/Alert';
 import Loader from '../../Utilities/Loader/Loader';
+import { base_url } from '../EnvImport/Index';
 
 
 interface headerData {
@@ -62,7 +63,7 @@ interface stateVariables {
 
 const ChildCategory: React.FC = () => {
   // Define the initial state with an array of HeaderData
-  const baseUrlPath: string = process.env.REACT_APP_BASE_URL ? process.env.REACT_APP_BASE_URL : "";
+  const baseUrlPath: string = base_url;
 
   const parent = useRef<HTMLInputElement>(null);
   const child = useRef<HTMLInputElement>(null);
@@ -135,6 +136,7 @@ const ChildCategory: React.FC = () => {
       ...pre,
       openDialog: true,
       isEdit: false,
+      parentVal: { _id: "", name: "" },
       // categoryImg: "",
       ChildCategoryName: "",
       ChildCategoryNameErr: false,
@@ -482,7 +484,7 @@ const ChildCategory: React.FC = () => {
 
       <MySnackbar open={openSnakbar} type={openSnakbarType} variant={"filled"} message={openSnakbarMsg} duration={3000} handleClose={() => setState((pre) => ({ ...pre, openSnakbar: false }))} />
 
-      <div className='jr-card mt-3 d-flex justify-content-between align-items-center'>
+      <div className='jr-card d-flex justify-content-between align-items-center'>
         <h4 className='bold'>Child Category</h4>
         {/* Button component with onClick event */}
         <Button
@@ -500,6 +502,7 @@ const ChildCategory: React.FC = () => {
         <MuiTable
           headerData={headerData}
           columnData={columnData}
+          options={""}
         />
       </div>
 
